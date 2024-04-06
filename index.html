@@ -27,6 +27,47 @@
 
 
   <style>
+  .arrow-container {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .arrow-left {
+    content: "";
+    display: block;
+    width: 50px; /* Length of the left part of the arrow */
+    height: 2px; /* Thickness of the arrow */
+    background-color: black;
+  }
+
+  .arrow-text {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: 2px solid black; /* Cool box border */
+    background-color: #f0f0f0; /* Light grey background */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    border-radius: 5px; /* Rounded corners for the box */
+  }
+
+  .arrow-right {
+    content: "";
+    display: block;
+    width: 50px; /* Length of the right part of the arrow */
+    height: 2px; /* Thickness of the arrow */
+    background-color: black;
+    position: relative;
+  }
+
+  .arrow-right:after {
+    content: "";
+    position: absolute;
+    top: -5px; /* Adjust to align with the thickness of the arrow */
+    right: 0;
+    border-left: 10px solid black;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+  }
     .gallery-container {
       display: flex; /* Makes the two main containers sit side by side */
       justify-content: center; /* Centers the containers horizontally */
@@ -60,8 +101,15 @@
     }
 
     .target-img, .ref-img {
-      width: 300px;
+      width: 40%; /* Adjust this percentage based on desired width relative to its container */
       margin: 5px;
+      display: none; /* Keep your initial setup */
+    }
+
+    @media (max-width: 768px) {
+      .target-img {
+        width: 100%; /* Full width on smaller screens */
+      }
     }
 
     .target-img {
@@ -294,7 +342,11 @@ We also show the application of ZeST to perform multiple edits and robust materi
           <div class="image-row">
             <div class="Title"> Input</div>
             <img src="static/images/example_results/beetle.png" class="ref-img">
-            <div class="Title">---After Transfer---></div>
+            <div class="arrow-container">
+              <div class="arrow-left"></div>
+              <div class="arrow-text">ZeST</div>
+              <div class="arrow-right"></div>
+            </div>
             <img src="static/images/example_results/metal_bowl_beetle.png" id="targetA1" class="target-img active">
             <img src="static/images/example_results/rock_beetle.png" id="targetB1" class="target-img">
             <img src="static/images/example_results/cup_glaze_beetle.png" id="targetC1" class="target-img">
@@ -313,7 +365,12 @@ We also show the application of ZeST to perform multiple edits and robust materi
           <div class="image-row">
             <div class="Title"> Input</div>
             <img src="static/images/example_results/statue.png" class="ref-img">
-            <div class="Title">---After Transfer--></div>
+
+            <div class="arrow-container">
+              <div class="arrow-left"></div>
+              <div class="arrow-text">ZeST</div>
+              <div class="arrow-right"></div>
+            </div>
             <img src="static/images/example_results/metal_bowl_statue.png" id="targetA2" class="target-img active">
             <img src="static/images/example_results/cloth2_statue.png" id="targetB2" class="target-img">
             <img src="static/images/example_results/jacket_statue.png" id="targetC2" class="target-img">
@@ -326,7 +383,56 @@ We also show the application of ZeST to perform multiple edits and robust materi
           </div>
         </div>
       </div>
+    <!-- </div>
+
+    <div class="gallery-container"> -->
+      <div class="container">
+        <div class="column">
+          <div class="image-row">
+            <div class="Title"> Input</div>
+            <img src="static/images/example_results/pumpkin.png" class="ref-img">
+            <div class="arrow-container">
+              <div class="arrow-left"></div>
+              <div class="arrow-text">ZeST</div>
+              <div class="arrow-right"></div>
+            </div>
+            <img src="static/images/example_results/glass_cup_pumpkin.png" id="targetA3" class="target-img active">
+            <img src="static/images/example_results/wood_pumpkin.png" id="targetB3" class="target-img">
+            <img src="static/images/example_results/plate_pumpkin.png" id="targetC3" class="target-img">
+          </div>
+          <div class="image-row">
+            <div class="Title"><strong>Click to Select Material</strong></div>
+            <img src="static/images/example_results/glass_cup.png" id="sourceA3" class="source-img enlarge" onclick="changeImage('A3', 3)">
+            <img src="static/images/example_results/wood.png" id="sourceB3" class="source-img" onclick="changeImage('B3', 3)">
+            <img src="static/images/example_results/plate.png" id="sourceC3" class="source-img" onclick="changeImage('C3', 3)">
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="column">
+          <div class="image-row">
+            <div class="Title"> Input</div>
+            <img src="static/images/example_results/chair1.png" class="ref-img">
+            <div class="arrow-container">
+              <div class="arrow-left"></div>
+              <div class="arrow-text">ZeST</div>
+              <div class="arrow-right"></div>
+            </div>
+            <img src="static/images/example_results/cloth1_chair1.png" id="targetA4" class="target-img active">
+            <img src="static/images/example_results/cloth3_chair1.png" id="targetB4" class="target-img">
+            <img src="static/images/example_results/ball_chair1.png" id="targetC4" class="target-img">
+          </div>
+          <div class="image-row">
+            <div><strong>Click to Select Material</strong></div>
+            <img src="static/images/example_results/cloth1.png" id="sourceA4" class="source-img enlarge" onclick="changeImage('A4', 4)">
+            <img src="static/images/example_results/cloth3.png" id="sourceB4" class="source-img" onclick="changeImage('B4', 4)">
+            <img src="static/images/example_results/ball.png" id="sourceC4" class="source-img" onclick="changeImage('C4', 4)">
+          </div>
+        </div>
+      </div>
     </div>
+
     <script>
       function changeImage(sourceId, column) {
         // Deactivate all source images in this column
